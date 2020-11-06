@@ -427,14 +427,13 @@ it('can subscribe to the store', () => {
   unsub()
 
   // Should be called when equality checker returns false
+  const listener = jest.fn(() => {});
   unsub = subscribe(
-    (value: number | null) => {
-      expect(value).toBe(initialState.value + 2)
-    },
+    listener,
     (s) => s.value,
     () => false
   )
-  setState(getState())
+  setState(getState());
   unsub()
 })
 
